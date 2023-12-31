@@ -26,15 +26,15 @@ class _RegisterState extends State<Register> {
     var data = json.decode(response.body);
     if (data == "Error") {
       Fluttertoast.showToast(
-        backgroundColor: Colors.orange,
-        textColor: Colors.white,
+        backgroundColor: Colors.green.shade100,
+        textColor: Colors.red.shade900,
         msg: 'User already exit!',
         toastLength: Toast.LENGTH_SHORT,
       );
     } else {
       Fluttertoast.showToast(
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
+        backgroundColor: Colors.green.shade100,
+        textColor: Colors.green.shade900,
         msg: 'Registration Successful',
         toastLength: Toast.LENGTH_SHORT,
       );
@@ -57,8 +57,10 @@ class _RegisterState extends State<Register> {
           width: double.infinity,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.teal.shade200, Colors.purple.shade900])),
+              gradient: LinearGradient(colors: [
+            Colors.green.shade700,
+            Color.fromRGBO(113, 159, 109, 1)
+          ])),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -68,8 +70,10 @@ class _RegisterState extends State<Register> {
                     height: 100,
                     width: 300,
                     decoration: const BoxDecoration(
-                        gradient:
-                            LinearGradient(colors: [Colors.red, Colors.yellow]),
+                        gradient: LinearGradient(colors: [
+                          Color.fromARGB(255, 47, 86, 59),
+                          Color.fromARGB(255, 138, 165, 82)
+                        ]),
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 4,
@@ -89,7 +93,7 @@ class _RegisterState extends State<Register> {
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.white70,
                                 shadows: [
                                   Shadow(
                                       color: Colors.black45,
@@ -102,7 +106,7 @@ class _RegisterState extends State<Register> {
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.pink.shade600,
+                                color: Colors.white70,
                                 shadows: const [
                                   Shadow(
                                       color: Colors.black45,
@@ -220,12 +224,12 @@ class _RegisterState extends State<Register> {
                         borderRadius: BorderRadius.circular(100)
                             .copyWith(bottomRight: const Radius.circular(0)),
                         gradient: LinearGradient(colors: [
-                          Colors.purple.shade600,
-                          Colors.amber.shade900
+                          Color.fromARGB(255, 184, 212, 123),
+                          Color(0xffD5f591)
                         ])),
                     child: Text('Signup',
                         style: TextStyle(
-                            color: Colors.white.withOpacity(.8),
+                            color: Color.fromRGBO(47, 50, 120, 1.0),
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),

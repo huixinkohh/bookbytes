@@ -38,8 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       Fluttertoast.showToast(
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
+        backgroundColor: Colors.green.shade100,
+        textColor: Colors.red.shade900,
         msg: 'Username and password invalid',
         toastLength: Toast.LENGTH_SHORT,
       );
@@ -56,8 +56,10 @@ class _LoginScreenState extends State<LoginScreen> {
           width: double.infinity,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.teal.shade200, Colors.purple.shade900])),
+              gradient: LinearGradient(colors: [
+            Colors.green.shade700,
+            Color.fromRGBO(113, 159, 109, 1)
+          ])),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -67,8 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 100,
                     width: 300,
                     decoration: const BoxDecoration(
-                        gradient:
-                            LinearGradient(colors: [Colors.red, Colors.yellow]),
+                        gradient: LinearGradient(colors: [
+                          Color.fromARGB(255, 47, 86, 59),
+                          Color.fromARGB(255, 138, 165, 82)
+                        ]),
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 4,
@@ -88,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.white70,
                                 shadows: [
                                   Shadow(
                                       color: Colors.black45,
@@ -101,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.pink.shade600,
+                                color: Colors.white70,
                                 shadows: const [
                                   Shadow(
                                       color: Colors.black45,
@@ -219,12 +223,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(100)
                             .copyWith(bottomRight: const Radius.circular(0)),
                         gradient: LinearGradient(colors: [
-                          Colors.purple.shade600,
-                          Colors.amber.shade900
+                          Color.fromARGB(255, 184, 212, 123),
+                          Color(0xffD5f591)
                         ])),
                     child: Text('Login',
                         style: TextStyle(
-                            color: Colors.white.withOpacity(.8),
+                            color: Color.fromRGBO(47, 50, 120, 1.0),
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),
