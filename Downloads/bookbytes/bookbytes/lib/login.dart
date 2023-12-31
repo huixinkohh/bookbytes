@@ -3,39 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'DashBoard.dart';
-import 'main.dart';
-import 'login.dart';
+import 'register.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _RegisterState createState() => _RegisterState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController user = TextEditingController();
   TextEditingController pass = TextEditingController();
 
-  Future register() async {
-    var url = Uri.http("10.205.175.168", '/register.php');
+  Future login() async {
+    var url = Uri.http("10.205.175.168", '/login.php', {'q': '{http}'});
     var response = await http.post(url, body: {
-      "username": user.text.toString(),
-      "password": pass.text.toString(),
+      "username": user.text,
+      "password": pass.text,
     });
     var data = json.decode(response.body);
-    if (data == "Error") {
+    if (data.toString() == "Success") {
       Fluttertoast.showToast(
-        backgroundColor: Colors.orange,
-        textColor: Colors.white,
-        msg: 'User already exit!',
-        toastLength: Toast.LENGTH_SHORT,
-      );
-    } else {
-      Fluttertoast.showToast(
+        msg: 'Login Successful',
         backgroundColor: Colors.green,
         textColor: Colors.white,
-        msg: 'Registration Successful',
         toastLength: Toast.LENGTH_SHORT,
       );
       Navigator.push(
@@ -43,6 +35,13 @@ class _RegisterState extends State<Register> {
         MaterialPageRoute(
           builder: (context) => DashBoard(),
         ),
+      );
+    } else {
+      Fluttertoast.showToast(
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        msg: 'Username and password invalid',
+        toastLength: Toast.LENGTH_SHORT,
       );
     }
   }
@@ -98,7 +97,7 @@ class _RegisterState extends State<Register> {
                                 ]),
                           ),
                           Text(
-                            ' Register',
+                            ' Login',
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
@@ -203,7 +202,7 @@ class _RegisterState extends State<Register> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    register();
+                    login();
                   },
                   child: Container(
                     height: 53,
@@ -223,7 +222,7 @@ class _RegisterState extends State<Register> {
                           Colors.purple.shade600,
                           Colors.amber.shade900
                         ])),
-                    child: Text('Signup',
+                    child: Text('Login',
                         style: TextStyle(
                             color: Colors.white.withOpacity(.8),
                             fontSize: 15,
@@ -233,7 +232,7 @@ class _RegisterState extends State<Register> {
                 const SizedBox(
                   height: 50,
                 ),
-                const Text('Already have an account?',
+                const Text('Don\'t have an account?',
                     style: TextStyle(color: Colors.white70, fontSize: 13)),
                 const SizedBox(
                   height: 20,
@@ -242,8 +241,7 @@ class _RegisterState extends State<Register> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()),
+                      MaterialPageRoute(builder: (context) => const Register()),
                     );
                   },
                   child: Container(
@@ -256,7 +254,7 @@ class _RegisterState extends State<Register> {
                       borderRadius: BorderRadius.circular(100)
                           .copyWith(bottomRight: const Radius.circular(0)),
                     ),
-                    child: Text('Login',
+                    child: Text('Sign Up',
                         style: TextStyle(
                             color: Colors.white.withOpacity(.8),
                             fontSize: 15,
