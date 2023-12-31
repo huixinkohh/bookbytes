@@ -6,41 +6,41 @@ import 'DashBoard.dart';
 import 'register.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController user = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
 
   Future login() async {
     var url = Uri.http("10.205.175.168", '/login.php', {'q': '{http}'});
     var response = await http.post(url, body: {
-      "username": user.text,
+      "userInput": email.text,
       "password": pass.text,
     });
     var data = json.decode(response.body);
-    if (data.toString() == "Success") {
+    if (data == "Success") {
       Fluttertoast.showToast(
         msg: 'Login Successful',
         backgroundColor: Colors.green,
-        textColor: Colors.white,
+        textColor: Colors.black,
         toastLength: Toast.LENGTH_SHORT,
       );
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DashBoard(),
+          builder: (context) => const DashBoard(),
         ),
       );
     } else {
       Fluttertoast.showToast(
         backgroundColor: Colors.green.shade100,
         textColor: Colors.red.shade900,
-        msg: 'Username and password invalid',
+        msg: 'Email or password invalid',
         toastLength: Toast.LENGTH_SHORT,
       );
     }
@@ -57,8 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-            Colors.green.shade700,
-            Color.fromRGBO(113, 159, 109, 1)
+                Colors.green.shade50,
+                const Color.fromRGBO(248, 249, 253, 1.0),
           ])),
           child: SingleChildScrollView(
             child: Column(
@@ -69,10 +69,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 100,
                     width: 300,
                     decoration: const BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          Color.fromARGB(255, 47, 86, 59),
-                          Color.fromARGB(255, 138, 165, 82)
-                        ]),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.green, // Change to your desired color
+                            Colors.lightGreenAccent, // Change to your desired color
+                          ],
+                        ),
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 4,
@@ -82,17 +86,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(200),
                             bottomRight: Radius.circular(200))),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 35, left: 65),
+                    child: const Padding(
+                      padding: EdgeInsets.only(bottom: 35, left: 65),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Text(
+                          Text(
                             'Let\'s',
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white70,
+                                color: Colors.black87,
                                 shadows: [
                                   Shadow(
                                       color: Colors.black45,
@@ -105,8 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white70,
-                                shadows: const [
+                                color: Colors.black87,
+                                shadows: [
                                   Shadow(
                                       color: Colors.black45,
                                       offset: Offset(1, 1),
@@ -125,30 +129,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30)
                       .copyWith(bottom: 10),
                   child: TextField(
-                    controller: user,
-                    style: const TextStyle(color: Colors.white, fontSize: 14.5),
+                    controller: email,
+                    style: const TextStyle(color: Colors.black, fontSize: 14.5),
                     decoration: InputDecoration(
                         prefixIconConstraints:
                             const BoxConstraints(minWidth: 45),
                         prefixIcon: const Icon(
                           Icons.alternate_email_outlined,
-                          color: Colors.white70,
+                          color: Colors.black87,
                           size: 22,
                         ),
                         border: InputBorder.none,
-                        hintText: 'Enter Username',
+                        hintText: 'Enter Email',
                         hintStyle: const TextStyle(
-                            color: Colors.white60, fontSize: 14.5),
+                            color: Colors.black54, fontSize: 14.5),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(100).copyWith(
                                 bottomRight: const Radius.circular(0)),
                             borderSide:
-                                const BorderSide(color: Colors.white38)),
+                                const BorderSide(color: Colors.black45)),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(100).copyWith(
                                 bottomRight: const Radius.circular(0)),
                             borderSide:
-                                const BorderSide(color: Colors.white70))),
+                                const BorderSide(color: Colors.black87))),
                   ),
                 ),
                 const SizedBox(
@@ -159,14 +163,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       .copyWith(bottom: 10),
                   child: TextField(
                     controller: pass,
-                    style: const TextStyle(color: Colors.white, fontSize: 14.5),
+                    style: const TextStyle(color: Colors.black, fontSize: 14.5),
                     obscureText: isPasswordVisible ? false : true,
                     decoration: InputDecoration(
                         prefixIconConstraints:
                             const BoxConstraints(minWidth: 45),
                         prefixIcon: const Icon(
                           Icons.lock,
-                          color: Colors.white70,
+                          color: Colors.black87,
                           size: 22,
                         ),
                         suffixIconConstraints:
@@ -181,24 +185,24 @@ class _LoginScreenState extends State<LoginScreen> {
                             isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.white70,
+                            color: Colors.black87,
                             size: 22,
                           ),
                         ),
                         border: InputBorder.none,
                         hintText: 'Enter Password',
                         hintStyle: const TextStyle(
-                            color: Colors.white60, fontSize: 14.5),
+                            color: Colors.black54, fontSize: 14.5),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(100).copyWith(
                                 bottomRight: const Radius.circular(0)),
                             borderSide:
-                                const BorderSide(color: Colors.white38)),
+                                const BorderSide(color: Colors.black45)),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(100).copyWith(
                                 bottomRight: const Radius.circular(0)),
                             borderSide:
-                                const BorderSide(color: Colors.white70))),
+                                const BorderSide(color: Colors.black87))),
                   ),
                 ),
                 const SizedBox(
@@ -222,11 +226,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                         borderRadius: BorderRadius.circular(100)
                             .copyWith(bottomRight: const Radius.circular(0)),
-                        gradient: LinearGradient(colors: [
+                        gradient: const LinearGradient(colors: [
                           Color.fromARGB(255, 184, 212, 123),
                           Color(0xffD5f591)
                         ])),
-                    child: Text('Login',
+                    child: const Text('Login',
                         style: TextStyle(
                             color: Color.fromRGBO(47, 50, 120, 1.0),
                             fontSize: 15,
@@ -237,7 +241,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                 ),
                 const Text('Don\'t have an account?',
-                    style: TextStyle(color: Colors.white70, fontSize: 13)),
+                    style: TextStyle(color: Colors.black87, fontSize: 13)),
                 const SizedBox(
                   height: 20,
                 ),
@@ -254,13 +258,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 30),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white60),
+                      border: Border.all(color: Colors.black54),
                       borderRadius: BorderRadius.circular(100)
                           .copyWith(bottomRight: const Radius.circular(0)),
                     ),
                     child: Text('Sign Up',
                         style: TextStyle(
-                            color: Colors.white.withOpacity(.8),
+                            color: Colors.black.withOpacity(.8),
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),

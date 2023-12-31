@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^1.1.2
   fluttertoast: 8.2.4
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,12 @@ flutter:
   #   - images/a_dot_ham.jpeg
   - assets\images\logo.png
   - assets\images\screen1.webp
+  - assets\images\menu.webp
+  - assets\images\book1.jpg
+  - assets\images\book2.jpg
+  - assets\images\book3.jpg
+  - assets\images\book4.jpg
+  - assets\images\book5.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -80,9 +87,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-  - family : OpenSans
-    fonts:
-      - asset: assets\fonts\OpenSans-Regular.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
